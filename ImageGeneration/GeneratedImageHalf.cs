@@ -29,22 +29,18 @@ namespace ImageGeneration
         public bool[,] Pixels { get; private set; }
 
         /// <summary>
-        /// The color of all <see cref="Pixels"/>
-        /// </summary>
-        [JsonProperty("color")]
-        public Color Color { get; set; }
-
-        /// <summary>
         /// Generates a <see cref="GeneratedImageHalf"/> with the specified size, color, and fill chance
         /// </summary>
         /// <param name="size">Number of rows and columns in the full image (must be even, minimum is 2)</param>
-        /// <param name="color">The color of all <see cref="Pixels"/></param>
         /// <param name="fillChance">Chance to color a rectangle out of 1.0</param>
+        /// <param name="seed">
+        /// Optional integer to seed the Random object with (default time-based seed used if left null)
+        /// </param>
         /// <returns>
         /// A <see cref="GeneratedImageHalf"/> object with randomly selected <see cref="Pixels"/>
         /// based on fillChance
         /// </returns>
-        public static GeneratedImageHalf Generate(int size, Color color, double fillChance)
+        public static GeneratedImageHalf Generate(int size, double fillChance, int? seed = null)
         {
             if (size < 2)
             {
@@ -61,13 +57,21 @@ namespace ImageGeneration
                 throw new ArgumentException("fillChance must be between 0.0 and 1.0.", "fillChance");
             }
 
+            // default to the already initialized static field
+            var random = GeneratedImageHalf.random;
+
+            // if given a seed, instantiate a new Random object with that seed and use that
+            if (seed != null)
+            {
+                random = new Random((int)seed);
+            }
+
             var imageHalf = new GeneratedImageHalf
             {
                 Size = size,
 
                 // size # of rows, 1/2 size # of columns
-                Pixels = new bool[size, size / 2],
-                Color = color
+                Pixels = new bool[size, size / 2]
             };
 
             // iterate over the pixel matrix and fill pixels based on the fill chance

@@ -23,17 +23,10 @@ namespace ImageGeneration
         [JsonProperty("pixels")]
         public bool[,] Pixels { get; private set; }
 
-        /// <summary>
-        /// The color of all <see cref="Pixels"/>
-        /// </summary>
-        [JsonProperty("color")]
-        public Color Color { get; set; }
-
         public GeneratedImage(GeneratedImageHalf imageHalf)
         {
             Size = imageHalf.Size;
             Pixels = new bool[Size, Size];
-            Color = imageHalf.Color;
 
             int halfSize = Size / 2;
 

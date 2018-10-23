@@ -12,7 +12,7 @@ namespace ImageGenerationTest
         {
             int size = 6;
 
-            var image = new GeneratedImage(GeneratedImageHalf.Generate(size, Color.Green, fillChance: 0.5));
+            var image = new GeneratedImage(GeneratedImageHalf.Generate(size, fillChance: 0.5));
 
             int length0 = image.Pixels.GetLength(0);
             int length1 = image.Pixels.GetLength(1);
@@ -24,7 +24,7 @@ namespace ImageGenerationTest
         [TestMethod]
         public void ReflectImageHalfPixels()
         {
-            var imageHalf = GeneratedImageHalf.Generate(size: 4, color: Color.Green, fillChance: 0.5);
+            var imageHalf = GeneratedImageHalf.Generate(size: 4, fillChance: 0.5);
 
             var image = new GeneratedImage(imageHalf);
 
