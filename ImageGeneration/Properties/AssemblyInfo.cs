@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ImageGeneration")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Library for generating simple grid-based images")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Clinton Community College")]
+[assembly: AssemblyCompany("Collen Irwin")]
 [assembly: AssemblyProduct("ImageGeneration")]
-[assembly: AssemblyCopyright("Copyright © Clinton Community College 2018")]
+[assembly: AssemblyCopyright("Copyright © Collen Irwin 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
