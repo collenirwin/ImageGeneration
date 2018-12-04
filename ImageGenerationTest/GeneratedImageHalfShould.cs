@@ -11,13 +11,6 @@ namespace ImageGenerationTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void NotAcceptOddSize()
-        {
-            var imageHalf = GeneratedImageHalf.Generate(size: 5, fillChance: 0.5);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void NotAcceptSizeUnder2()
         {
             var imageHalf = GeneratedImageHalf.Generate(size: 1, fillChance: 0.5);
@@ -49,6 +42,20 @@ namespace ImageGenerationTest
 
             Assert.AreEqual(length0, size);
             Assert.AreEqual(length1, size / 2);
+        }
+
+        [TestMethod]
+        public void HaveCorrectSizePixelsUsingOddSize()
+        {
+            int size = 7;
+
+            var imageHalf = GeneratedImageHalf.Generate(size, fillChance: 0.5);
+
+            int length0 = imageHalf.Pixels.GetLength(0);
+            int length1 = imageHalf.Pixels.GetLength(1);
+
+            Assert.AreEqual(length0, 7);
+            Assert.AreEqual(length1, 4);
         }
 
         /// <summary>

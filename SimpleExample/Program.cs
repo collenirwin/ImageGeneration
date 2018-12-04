@@ -50,6 +50,10 @@ namespace SimpleExample
             printImage(same1);
             printImage(same2);
 
+            var half5x5 = ImageGenerator.GenerateImage(size: 5, fillChance: 0.5);
+            Console.WriteLine("5x5, 50% fill chance (odd size)");
+            printImage(half5x5);
+
             Console.WriteLine("Go again? [y/n]");
 
             if (Console.ReadLine().ToLower() == "y")

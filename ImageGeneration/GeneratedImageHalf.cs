@@ -31,7 +31,7 @@ namespace ImageGeneration
         /// <summary>
         /// Generates a <see cref="GeneratedImageHalf"/> with the specified size, color, and fill chance
         /// </summary>
-        /// <param name="size">Number of rows and columns in the full image (must be even, minimum is 2)</param>
+        /// <param name="size">Number of rows and columns in the full image (minimum is 2)</param>
         /// <param name="fillChance">Chance to color a rectangle out of 1.0</param>
         /// <param name="seed">
         /// Optional integer to seed the Random object with (default time-based seed used if left null)
@@ -45,11 +45,6 @@ namespace ImageGeneration
             if (size < 2)
             {
                 throw new ArgumentException("size must be greater than 1.", "size");
-            }
-
-            if (size % 2 != 0)
-            {
-                throw new ArgumentException("size must be an even number.", "size");
             }
 
             if (fillChance < 0.0 || fillChance > 1.0)
@@ -71,7 +66,8 @@ namespace ImageGeneration
                 Size = size,
 
                 // size # of rows, 1/2 size # of columns
-                Pixels = new bool[size, size / 2]
+                // or 1/2 size + 1 columns if size is odd
+                Pixels = new bool[size, size % 2 == 0 ? size / 2 : size / 2 + 1]
             };
 
             // iterate over the pixel matrix and fill pixels based on the fill chance
